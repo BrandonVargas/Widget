@@ -1,0 +1,41 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.saic.widget">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <application android:allowBackup="true" android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher" android:theme="@style/AppTheme">
+        <receiver android:name="ExampleAppWidgetProvider" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.saic.widget.ExampleAppWidgetProvider.BTN_ALBUM_ART" />
+                <action android:name="com.saic.widget.ExampleAppWidgetProvider.BTN_JUMP_NEXT" />
+                <action android:name="com.saic.widget.ExampleAppWidgetProvider.BTN_JUMP_PREV" />
+                <action android:name="com.saic.widget.ExampleAppWidgetProvider.BTN_PLAY_PAUSE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/appwidget_info" />
+        </receiver>
+
+        <activity android:name="AppWidgetConfiguration"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateUnchanged">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <service android:name="AppWidgetService"
+            android:exported="false">
+            <intent-filter >
+                <action android:name="com.saic.widget.APPWIDGET_SERVICE" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name="ServiceStarter">
+            <intent-filter >
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
